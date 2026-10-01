@@ -3,7 +3,7 @@ cask "bridgectl" do
   name "bridgectl"
   desc "gRPC daemon and SDK that manages AI agent subprocess lifecycles over a PTY transport"
   homepage "https://github.com/orchael/bridgectl"
-  version "1.4.1"
+  version "1.4.2"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,22 +14,22 @@ cask "bridgectl" do
   on_macos do
     on_intel do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_darwin_amd64.tar.gz"
-      sha256 "7c943f449b43bf319cd6a9f3ebe675be8b63e3afd069a25f1649bd49c68fa555"
+      sha256 "01dd1082147afb11585729359b70289456b78982575859ab9e32b8af429a366f"
     end
     on_arm do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_darwin_arm64.tar.gz"
-      sha256 "dda6b99836cb1e18234e50d89339288fe82af9c712d544e9954aa95fa7b475ac"
+      sha256 "10cd5a253ffd186c8bed60a710da986ff585ad5a810a31be9ddd5f43257a238d"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_linux_amd64.tar.gz"
-      sha256 "a43f6dce987a4315c8328fca40921651d91c9ada1a1b426de3424404a15f5d37"
+      sha256 "d9ef00ba91683e7d0ef7970501a39c11eef51671886831c485b61fcd509668b1"
     end
     on_arm do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_linux_arm64.tar.gz"
-      sha256 "f3ca49cb74cf9a0ae8c862e6f0a9affa82bf5689bd40b77bf7e9914ff9494dee"
+      sha256 "7b17df107300232c3b63f4650beb0b3bb7f1edfc2fff3b08a834498fa92a1c47"
     end
   end
 
@@ -39,8 +39,27 @@ cask "bridgectl" do
     ""
     "  brew install node@24"
     ""
-    "To run the daemon at login, see the launchd plist documented in the README."
+    "To run the bridge server at login, install the launchd agent:"
+    ""
+    "  bridgectl server install-agent --start"
+    ""
+    "The agent is generated from this binary's real path and inherits the PATH"
+    "of the shell you run it from, so it finds node and the provider CLIs."
+    "Logs go to ~/Library/Logs/bridgectl/. Remove it with:"
+    ""
+    "  bridgectl server uninstall-agent"
   end
 
-  # No zap stanza required
+  uninstall launchctl: [
+      "com.orchael.bridgectl",
+    ]
+
+  zap launchctl: [
+      "com.orchael.bridgectl",
+    ],
+    trash: [
+      "~/Library/LaunchAgents/com.orchael.bridgectl.plist",
+      "~/Library/Logs/bridgectl",
+    ]
+
 end
