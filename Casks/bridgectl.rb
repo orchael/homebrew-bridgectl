@@ -3,7 +3,7 @@ cask "bridgectl" do
   name "bridgectl"
   desc "gRPC daemon and SDK that manages AI agent subprocess lifecycles over a PTY transport"
   homepage "https://github.com/orchael/bridgectl"
-  version "1.4.9"
+  version "1.4.10"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,22 +14,22 @@ cask "bridgectl" do
   on_macos do
     on_intel do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_darwin_amd64.tar.gz"
-      sha256 "3dc56f46caf05dd5d419813e4f901cab0200e7496ae9ab59dad09d29abc7a31a"
+      sha256 "b63882ca8fa8e7b79c796f786939529e23b0a2e0bc482ed4bb7108e19ccf5260"
     end
     on_arm do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_darwin_arm64.tar.gz"
-      sha256 "11c3ef9100eac1ecfd7578d9659c30e02b54a0d432acbbb2cf22eaabe91265d7"
+      sha256 "1b258969cd4818ed26631e35142837da32fa0b758983e7ac6661db8acc3f652b"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_linux_amd64.tar.gz"
-      sha256 "e891d581650787124f5b20ee0a2c1d3bef520f1dc4b3f0ec3239d8b0d853af79"
+      sha256 "d4e6e3f9b6780a8415071f1a1347e2307fc2c8bda5fb4ced0a780948232e1f7d"
     end
     on_arm do
       url "https://github.com/orchael/bridgectl/releases/download/v#{version}/bridgectl_#{version}_linux_arm64.tar.gz"
-      sha256 "94c42b02961c3c77f7e9fe5b2bd91bbe568212caa09b56797967dfad09e242ab"
+      sha256 "8d66623fa6ffb15e9f004480c731e0a5023a39d31b275a4bc2641d30b706d2f2"
     end
   end
 
